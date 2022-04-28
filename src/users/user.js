@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         //select: false //não mostra o que foi escrito
     },
-    avatar: {
+    photo: {
         type: String,
         required: true
     }
