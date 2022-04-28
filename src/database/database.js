@@ -4,7 +4,7 @@ const connectDatabase = () => {
   console.log("Conectando com o banco de dados");
 
   mongoose
-    .connect(process.env.DATABASE_URL, {
+    .connect(process.env.DATABASE_URI, {
       useNewUrlParser: true,
       useUnifiedTopoLogy: true,
     })
