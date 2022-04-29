@@ -12,4 +12,4 @@ const connectDatabase = () => {
     .catch((err) => console.log(`erro ao conectar com o banco ${err}`));
 };
 
-module.exports = connectDatabase
+module.exports = connectDatabase;

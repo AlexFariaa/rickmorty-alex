@@ -19,5 +19,5 @@ const validObjectBody = (req, res, next) => {
 
 module.exports = {
   validId,
-  validObjectBody
+  validObjectBody,
 };

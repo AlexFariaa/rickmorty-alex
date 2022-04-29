@@ -30,18 +30,23 @@ const createCharacterController = async (req, res) => {
 };
 
 const updateCharacterController = async (req, res) => {
-  const idParam = req.params.id
-  const character = req.body
+  const idParam = req.params.id;
+  const character = req.body;
 
-  const updateCharacter = await characterService.updateCharacterService(idParam, character);
+  const updateCharacter = await characterService.updateCharacterService(
+    idParam,
+    character
+  );
 
-  return res.status(200).send(updateCharacter)
+  return res.status(200).send(updateCharacter);
 };
 
 const deleteCharacterController = async (req, res) => {
-  const idParam = req.params.id
-  const deleteCharacter = await characterService.deleteCharacterService(idParam)
-  return res.status(200).send({message: "Personagem deletado com sucesso!"})
+  const idParam = req.params.id;
+  const deleteCharacter = await characterService.deleteCharacterService(
+    idParam
+  );
+  return res.status(200).send({ message: "Personagem deletado com sucesso!" });
 };
 
 module.exports = {
