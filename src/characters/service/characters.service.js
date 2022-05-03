@@ -28,10 +28,17 @@ const deleteCharacterService = async (idParam) => {
   return deleteCharacter;
 };
 
+const findByNameCharacterService = (message) => {
+  Characters.findOne({
+    message: { $regex: `${message || ""}`, $options: "i" },
+  }).populate("Characters");
+};
+
 module.exports = {
   findAllCharactersService,
   findByIdCharacterService,
   createNewCharacterService,
   updateCharacterService,
   deleteCharacterService,
+  findByNameCharacterService,
 };

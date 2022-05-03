@@ -49,10 +49,27 @@ const deleteCharacterController = async (req, res) => {
   return res.status(200).send({ message: "Personagem deletado com sucesso!" });
 };
 
+const findByNameCharacterController = async (req, res) => {
+  const { message } = req.body;
+
+  const character = await characterService.findByNameCharacterService(message);
+
+  if (character.length === 0) {
+    return res
+      .status(400)
+      .send({ message: "Não existe personagens com esse nome" });
+  }
+
+  return res.send({
+    character,
+  });
+};
+
 module.exports = {
   findAllCharactersController,
   findByIdCharacterController,
   createCharacterController,
   updateCharacterController,
   deleteCharacterController,
+  findByNameCharacterController,
 };
