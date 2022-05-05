@@ -24,7 +24,8 @@ const findByIdCharacterController = async (req, res) => {
 const createCharacterController = async (req, res) => {
   const character = req.body;
   const newCharacter = await characterService.createNewCharacterService(
-    character
+    character,
+    req.userId //Para fazer a autenticação se o usuario que quer criar o personagem esta logado
   );
   return res.status(201).send(newCharacter);
 };

@@ -1,7 +1,7 @@
 const Characters = require("../models/characters");
 
 const findAllCharactersService = async () => {
-  const allCharacters = await Characters.find();
+  const allCharacters = await Characters.find().sort({_id: -1});
   return allCharacters;
 };
 
