@@ -1,9 +1,11 @@
 const Characters = require("../models/characters");
 
-const findAllCharactersService = async () => {
-  const allCharacters = await Characters.find().sort({_id: -1});
+const findAllCharactersService = async (offset = 0, limit = 5) => {
+  const allCharacters = await Characters.find().sort({_id: -1}).skip(offset).limit(limit);
   return allCharacters;
 };
+
+const countCharacterService = () => Characters.countDocuments();
 
 const findByIdCharacterService = async (idParam) => {
   const idCharacter = await Characters.findById(idParam);
@@ -41,4 +43,5 @@ module.exports = {
   updateCharacterService,
   deleteCharacterService,
   findByNameCharacterService,
+  countCharacterService,
 };

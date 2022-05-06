@@ -1,13 +1,49 @@
 const characterService = require("../service/characters.service");
 
 const findAllCharactersController = async (req, res) => {
-  const allCharacters = await characterService.findAllCharactersService();
+  try {
+    let { offset, limit } = req.query;
 
-  if (allCharacters.length == 0) {
-    return res.status(404).send({ message: "Nenhum personagem cadastrado!" });
+    limit = Number(limit);
+    offset = Number(offset);
+
+    if (!limit) {
+      limit = 5;
+    }
+
+    if (!offset) {
+      offset = 0;
+    }
+
+    const allCharacters = await characterService.findAllCharactersService(
+      offset,
+      limit
+    );
+
+    const total = await characterService.countCharacterService();
+
+    const currentUrl = req.baseUrl;
+
+    const next = offset + limit;
+
+    const nextUrl =
+      next < total ? `${currentUrl}?limit=${limit}&offset=${next}` : null;
+
+    const previous = offset - limit < 0 ? null : offset - limit;
+
+    const previousUrl =
+      previous != null
+        ? `${currentUrl}?limit=${limit}&offset=${previous}`
+        : null;
+
+    if (!allCharacters.length === 0) {
+      return res.status(404).send({ message: "Nenhum personagem cadastrado!" });
+    }
+
+    return res.status(200).send({ nextUrl, previousUrl, allCharacters });
+  } catch (err) {
+    return res.status(500).send({ message: err.message });
   }
-
-  res.status(200).send(allCharacters);
 };
 
 const findByIdCharacterController = async (req, res) => {
