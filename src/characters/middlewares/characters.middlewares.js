@@ -11,7 +11,7 @@ const validId = (req, res, next) => {
 const validObjectBody = (req, res, next) => {
   const character = req.body;
 
-  if (!character.user || !character.name || !character.imageUrl) {
+  if (!character.name || !character.imageUrl) {
     return res.status(400).send({ message: "Envie todos os campos" });
   }
   next();

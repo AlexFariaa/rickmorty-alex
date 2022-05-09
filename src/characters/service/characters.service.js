@@ -1,7 +1,10 @@
 const Characters = require("../models/characters");
 
 const findAllCharactersService = async (offset = 0, limit = 5) => {
-  const allCharacters = await Characters.find().sort({_id: -1}).skip(offset).limit(limit);
+  const allCharacters = await Characters.find()
+    .sort({ _id: -1 })
+    .skip(offset)
+    .limit(limit);
   return allCharacters;
 };
 
@@ -30,11 +33,10 @@ const deleteCharacterService = async (idParam) => {
   return deleteCharacter;
 };
 
-const findByNameCharacterService = (message) => {
-  Characters.findOne({
-    message: { $regex: `${message || ""}`, $options: "i" },
+const findByNameCharacterService = (message) =>
+  Characters.find({
+    name: { $regex: `${message || ""}`, $options: "i" },
   }).populate("Characters");
-};
 
 module.exports = {
   findAllCharactersService,

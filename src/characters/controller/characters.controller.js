@@ -40,7 +40,15 @@ const findAllCharactersController = async (req, res) => {
       return res.status(404).send({ message: "Nenhum personagem cadastrado!" });
     }
 
-    return res.status(200).send({ nextUrl, previousUrl, allCharacters });
+    return res.status(200).send({ nextUrl, previousUrl, allCharacters,
+    allCharacters: allCharacters.map((personagem)=> ({
+      id: personagem._id,
+      user: personagem.user,
+      name: personagem.name,
+      imageUrl: personagem.imageUrl
+    })) });
+
+    
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
@@ -87,7 +95,7 @@ const deleteCharacterController = async (req, res) => {
 };
 
 const findByNameCharacterController = async (req, res) => {
-  const { message } = req.body;
+  const { message } = req.query;
 
   const character = await characterService.findByNameCharacterService(message);
 
@@ -97,10 +105,35 @@ const findByNameCharacterController = async (req, res) => {
       .send({ message: "Não existe personagens com esse nome" });
   }
 
-  return res.send({
-    character,
-  });
+  return res.status(200).send({
+    allCharacters: allCharacters.map((personagem)=> ({
+      id: personagem._id,
+      user: personagem.user,
+      name: personagem.name,
+      imageUrl: personagem.imageUrl
+    })) });
 };
+
+/*const findByNameCharacterController = async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    const character = await characterService.findByNameCharacterController(
+      message
+    );
+
+    if (character.length === 0) {
+      return res
+        .status(400)
+        .send({ message: "Não existe personagens com esse nome" });
+    }
+
+    return res.status(200).send({ character });
+
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};*/
 
 module.exports = {
   findAllCharactersController,
