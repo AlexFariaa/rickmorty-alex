@@ -103,12 +103,12 @@ const findByNameCharacterController = async (req, res) => {
 
   if (character.length === 0) {
     return res
-      .status(400)
+      .status(404)
       .send({ message: "Não existe personagens com esse nome" });
   }
 
   return res.status(200).send({
-    allCharacters: allCharacters.map((personagem) => ({
+    character: character.map((personagem) => ({
       id: personagem._id,
       user: personagem.user,
       name: personagem.name,

@@ -70,7 +70,7 @@
         "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
-          "400": {
+          "404": {
             "description": "Not Found"
           },
           "200": {
@@ -112,7 +112,7 @@
           }
         },
         "responses": {
-          "400": {
+          "404": {
             "description": "Not Found"
           },
           "200": {
@@ -188,7 +188,7 @@
           "401": {
             "description": "Unauthorized"
           },
-          "400": {
+          "404": {
             "description": "Not Found"
           },
           "200": {
@@ -225,7 +225,7 @@
           "401": {
             "description": "Unauthorized"
           },
-          "400": {
+          "404": {
             "description": "Not Found"
           },
           "200": {
@@ -333,7 +333,7 @@
           "401": {
             "description": "Unauthorized"
           },
-          "400": {
+          "404": {
             "description": "Not Found"
           },
           "200": {

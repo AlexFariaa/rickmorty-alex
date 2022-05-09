@@ -36,7 +36,7 @@ const deleteCharacterService = async (idParam) => {
 const findByNameCharacterService = (message) =>
   Characters.find({
     name: { $regex: `${message || ""}`, $options: "i" },
-  }).populate("Characters");
+  });
 
 module.exports = {
   findAllCharactersService,
