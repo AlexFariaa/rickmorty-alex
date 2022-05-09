@@ -40,15 +40,17 @@ const findAllCharactersController = async (req, res) => {
       return res.status(404).send({ message: "Nenhum personagem cadastrado!" });
     }
 
-    return res.status(200).send({ nextUrl, previousUrl, allCharacters,
-    allCharacters: allCharacters.map((personagem)=> ({
-      id: personagem._id,
-      user: personagem.user,
-      name: personagem.name,
-      imageUrl: personagem.imageUrl
-    })) });
-
-    
+    return res.status(200).send({
+      nextUrl,
+      previousUrl,
+      allCharacters,
+      allCharacters: allCharacters.map((personagem) => ({
+        id: personagem._id,
+        user: personagem.user,
+        name: personagem.name,
+        imageUrl: personagem.imageUrl,
+      })),
+    });
   } catch (err) {
     return res.status(500).send({ message: err.message });
   }
@@ -106,12 +108,13 @@ const findByNameCharacterController = async (req, res) => {
   }
 
   return res.status(200).send({
-    allCharacters: allCharacters.map((personagem)=> ({
+    allCharacters: allCharacters.map((personagem) => ({
       id: personagem._id,
       user: personagem.user,
       name: personagem.name,
-      imageUrl: personagem.imageUrl
-    })) });
+      imageUrl: personagem.imageUrl,
+    })),
+  });
 };
 
 /*const findByNameCharacterController = async (req, res) => {

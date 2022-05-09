@@ -208,46 +208,46 @@
       }
     },
     "/characters/find/{id}": {
-        "get": {
-            "summary": "busca o personagem pelo ID",
-            "description": "Rota responsável por buscar os personagens pelo ID",
-            "tags": ["Characters"],
-            "security": [{"bearerAuth": [] }],
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Id do personagem para busca",
-                    "required": true
+      "get": {
+        "summary": "busca o personagem pelo ID",
+        "description": "Rota responsável por buscar os personagens pelo ID",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Characters"
                 }
-            ],
-            "responses": {
-                "401": {
-                    "description": "Unauthorized"
-                },
-                "400": {
-                    "description": "Not Found"
-                },
-                "200": {
-                    "description": "Ok",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "$ref": "#/components/schemas/Characters"
-                            }
-                        }
-                    }
-                }
+              }
             }
+          }
         }
+      }
     },
     "/characters/update/{id}": {
       "put": {
         "summary": "Edita um personagem ja existente",
         "description": "Rota responsável por editar um personagem",
         "tags": ["Characters"],
-        "security": [{"bearerAuth": [] }],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -291,12 +291,12 @@
         }
       }
     },
-    "/characters/delete/{id}":{
+    "/characters/delete/{id}": {
       "delete": {
         "summary": "Deleta o personagem pelo ID",
         "description": "Rota responsável por deletar o personagem pelo ID",
         "tags": ["Characters"],
-        "security": [{"bearerAuth": [] }],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -316,41 +316,41 @@
       }
     },
     "/characters/search": {
-        "get": {
-            "summary": "Busca personagens pelo nome",
-            "description": "Rota responsável por buscar os personagens pelo nome",
-            "tags": ["Characters"],
-            "security": [{"bearerAuth": [] }],
-            "parameters":[
-                {
-                    "in": "query",
-                    "name": "message",
-                    "type": "string",
-                    "required": true
+      "get": {
+        "summary": "Busca personagens pelo nome",
+        "description": "Rota responsável por buscar os personagens pelo nome",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "message",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Characters"
+                  }
                 }
-            ],
-            "responses": {
-                "401": {
-                    "description": "Unauthorized"
-                },
-                "400": {
-                    "description": "Not Found"
-                },
-                "200": {
-                    "description": "OK",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/Characters"
-                                }
-                            }
-                        }
-                    }
-                }
+              }
             }
+          }
         }
+      }
     }
   },
   "components": {

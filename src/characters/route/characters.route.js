@@ -5,7 +5,7 @@ const {
   validObjectBody,
 } = require("../middlewares/characters.middlewares");
 
-const {validLogin} = require("../../auth/auth.middleware")
+const { validLogin } = require("../../auth/auth.middleware");
 
 router.get("/", charactersController.findAllCharactersController);
 
@@ -33,6 +33,10 @@ router.delete(
   validLogin,
   charactersController.deleteCharacterController
 );
-router.get("/search",validLogin, charactersController.findByNameCharacterController);
+router.get(
+  "/search",
+  validLogin,
+  charactersController.findByNameCharacterController
+);
 
 module.exports = router;

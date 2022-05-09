@@ -9,11 +9,11 @@ const findAllUserService = async () => {
   return allUser;
 };
 
-const findByIdUserService = (idUser) => User.findById(idUser)
+const findByIdUserService = (idUser) => User.findById(idUser);
 
 module.exports = {
   findByEmailUserService,
   createUserService,
   findAllUserService,
-  findByIdUserService
+  findByIdUserService,
 };

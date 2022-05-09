@@ -11,15 +11,15 @@ const validLogin = (req, res, next) => {
 
   const parts = authHeader.split(" "); // ["Bearer", "<token>"]
 
-    if (parts.length !== 2) {
-      return res.status(401).send({ message: "Token inválido!" });
-    }
+  if (parts.length !== 2) {
+    return res.status(401).send({ message: "Token inválido!" });
+  }
 
-    const [scheme, token] = parts;
+  const [scheme, token] = parts;
 
-    if (!/^Bearer$/i.test(scheme)) {
-      return res.status(401).send({ message: "Token malformatado!" });
-    }
+  if (!/^Bearer$/i.test(scheme)) {
+    return res.status(401).send({ message: "Token malformatado!" });
+  }
 
   jwt.verify(token, process.env.SECRET, async (err, decoded) => {
     const user = await findByIdUserService(decoded.id);
